@@ -5,8 +5,9 @@
   "private": true,
   "main": "src/server.js",
   "scripts": {
-    "dev": "node --watch src/server.js",
+    "dev": "node --watch --env-file=.env.development src/server.js",
     "start": "node src/server.js",
+    "start:prod": "node --env-file=.env.production src/server.js",
     "test": "node --test"
   },
   "repository": {
