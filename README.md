@@ -7,9 +7,12 @@ REST API for customer management, developed as part of a technical assessment fo
 - Node.js 24
 - Express 5
 - JavaScript (ES Modules)
-- PostgreSQL (planned)
-- Sequelize ORM (planned)
-- Docker (planned)
+
+Planned technologies:
+
+- PostgreSQL
+- Sequelize ORM
+- Docker
 
 ## Prerequisites
 
@@ -18,6 +21,8 @@ REST API for customer management, developed as part of a technical assessment fo
 - Git
 
 ## Getting Started
+
+### Installation
 
 Clone the repository:
 
@@ -32,42 +37,91 @@ Install dependencies:
 npm ci
 ```
 
-Start the development server:
+### Environment Configuration
+
+Create the environment files from the provided examples:
+
+```bash
+cp .env.dev.example .env.development
+cp .env.prod.example .env.production
+```
+
+The application supports two environments:
+
+| Configuration | Development   | Production     |
+| ------------- | ------------- | -------------- |
+| NODE_ENV      | development   | production     |
+| APP_NAME      | customers-dev | customers-prod |
+| PORT          | 8080          | 9090           |
+
+Node.js loads the corresponding environment file using the native `--env-file` option.
+
+### Run in Development
 
 ```bash
 npm run dev
 ```
 
-The server currently runs on port `8080` by default.
+Expected output:
+
+```text
+[DEVELOPMENT] customers-dev running on port 8080
+```
+
+### Run in Production (Simulated)
+
+```bash
+npm run start:prod
+```
+
+Expected output:
+
+```text
+[PRODUCTION] customers-prod running on port 9090
+```
+
+Both environments use the same application code with different configurations.
 
 ## Available Scripts
 
-| Command       | Description                              |
-| ------------- | ---------------------------------------- |
-| `npm run dev` | Starts the server with automatic restart |
-| `npm start`   | Starts the server                        |
-| `npm test`    | Runs automated tests                     |
+| Command              | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
+| `npm run dev`        | Starts the development server with automatic restart              |
+| `npm start`          | Starts the server using externally supplied environment variables |
+| `npm run start:prod` | Starts the simulated production environment                       |
+| `npm test`           | Runs automated tests once implemented                             |
 
 ## Project Structure
 
 ```text
 src/
 ├── app.js
+├── config/
+│   └── env.js
 └── server.js
 ```
 
 - `app.js`: Configures the Express application.
-- `server.js`: Starts the HTTP server.
+- `config/env.js`: Reads and validates environment variables.
+- `server.js`: Starts the HTTP server using the selected configuration.
 
 ## Development Status
 
 The project is currently under development.
 
-Planned features include:
+### Implemented
 
-- Customer creation and retrieval
+- Express application setup
+- ES Modules configuration
+- Development and simulated production environments
+- Environment variable validation
+- Environment-specific startup scripts
+
+### Planned
+
+- Customer creation and retrieval endpoints
 - PostgreSQL persistence
-- DEV and PROD environment configurations
+- Sequelize ORM integration
 - Input validation and error handling
 - Automated tests
 - Docker containerization
@@ -76,5 +130,7 @@ Planned features include:
 ## Security
 
 Environment files and sensitive credentials are excluded from version control through `.gitignore`.
+
+Example environment files are provided to reproduce the application configuration without exposing secrets.
 
 Only fictitious data should be used during development and testing.
