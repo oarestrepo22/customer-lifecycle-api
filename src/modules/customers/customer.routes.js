@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { createCustomer, getCustomers } from './customer.controller.js';
-import { validateCreateCustomer } from './middlewares/validate-create-customer.middleware.js';
+import { createCustomerRules } from './validations/create-customer.validation.js';
+import { validate } from '../../middlewares/validation.middleware.js';
 
 const router = Router();
 
-router.post('/', validateCreateCustomer, createCustomer);
+router.post('/', validate(createCustomerRules), createCustomer);
 router.get('/', getCustomers);
 
 export default router;
