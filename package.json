@@ -6,8 +6,9 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch --env-file=.env.development src/server.js",
-    "start": "node src/server.js",
-    "start:prod": "node --env-file=.env.production src/server.js",
+    "build": "esbuild src/server.js --bundle --platform=node --target=node24 --format=cjs --outfile=dist/server.cjs",
+    "start:build:dev": "node --env-file=.env.development dist/server.cjs",
+    "start:build:prod": "node --env-file=.env.production dist/server.cjs",
     "test": "node --test"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "sequelize-cli": "^6.6.5"
   }
 }
