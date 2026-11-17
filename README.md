@@ -124,7 +124,7 @@ Successful response: `201 Created`
 
 ```json
 {
-  "message": "Cliente creado correctamente",
+  "message": "Customer created successfully.",
   "id": "<generated-customer-id>"
 }
 ```
