@@ -4,7 +4,7 @@ export const createCustomer = async (req, res) => {
   const customer = await customerService.createCustomer(req.body);
 
   return res.status(201).json({
-    message: 'Cliente creado correctamente',
+    message: 'Customer created successfully.',
     id: customer.id,
   });
 };
