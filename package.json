@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "node --watch --env-file=.env.development src/server.js",
     "build": "esbuild src/server.js --bundle --platform=node --target=node24 --format=cjs --outfile=dist/server.cjs",
-    "start:build:dev": "node --env-file=.env.development dist/server.cjs",
-    "start:build:prod": "node --env-file=.env.production dist/server.cjs",
+    "start:dev": "node --env-file=.env.development dist/server.cjs",
+    "start:prod": "node --env-file=.env.production dist/server.cjs",
+    "docker:build": "docker compose --env-file .env.development build",
+    "docker:dev": "docker compose --env-file .env.development up -d --no-build",
+    "docker:prod": "docker compose --env-file .env.production up -d --no-build",
     "test": "node --test"
   },
   "repository": {
