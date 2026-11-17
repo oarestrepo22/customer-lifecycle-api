@@ -1,7 +1,22 @@
 import app from './app.js';
+import { config } from './config/env.js';
+import { sequelize } from './config/database.js';
 
-const PORT = process.env.PORT || 8080;
+const startServer = async () => {
+  try {
+    await sequelize.authenticate();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+    console.log('Database connection established.');
+
+    app.listen(config.port, () => {
+      console.log(
+        `[${config.environment.toUpperCase()}] ${config.appName} running on port ${config.port}`,
+      );
+    });
+  } catch (error) {
+    console.error('Failed to start application:', error);
+    process.exit(1);
+  }
+};
+
+startServer();
