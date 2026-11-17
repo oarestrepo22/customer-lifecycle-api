@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 8080
 
-CMD ["node", "dist/server.cjs"]
+CMD ["sh", "-c", "npx sequelize-cli db:migrate --config src/config/sequelize-cli.cjs --migrations-path migrations && node dist/server.cjs"]
